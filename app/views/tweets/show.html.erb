@@ -6,7 +6,7 @@
 </p>
 
 <%if @num_comments != 0%>
-
+<!-- come in and clean this up! -->
 <table>
   <thead>
     <tr>
@@ -33,6 +33,6 @@
   </tbody>
 </table>
 <%else%>
-	no comments. bummer.
+	You currently have no comments!
 	<%= link_to "Add a comment", new_comment_path(:tweet_id=>@tweet.id) %>
 <%end%>

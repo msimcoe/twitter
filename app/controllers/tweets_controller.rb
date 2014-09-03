@@ -7,17 +7,17 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
   end
 
-  # GET /tweets/new
-  def new
-    @tweet = Tweet.new
-  end  
-
   # GET /tweets/1
   # GET /tweets/1.json
   def show
     # get all the comments for this tweet
     @comments = @tweet.comments
     @num_comments = @comments.count
+  end
+
+  # GET /tweets/new
+  def new
+    @tweet = Tweet.new
   end
 
   # GET /tweets/1/edit
@@ -32,9 +32,9 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       if @tweet.save
-        format.html { redirect_to @tweet, notice: 'Tweet created successfully.' }
+        format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
         format.json { render action: 'show', status: :created, location: @tweet }
-        format.json
+        
       else
         format.html { render action: 'new' }
         format.json { render json: @tweet.errors, status: :unprocessable_entity }
@@ -47,7 +47,7 @@ class TweetsController < ApplicationController
   def update
     respond_to do |format|
       if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: 'Tweet updated successfully.' }
+        format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
         format.json { head :no_content }
         format.js
       else

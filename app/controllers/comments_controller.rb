@@ -13,16 +13,13 @@ class CommentsController < ApplicationController
   # GET /comments/1.json
   def show
   end
-
   def recent
+
   end
 
   # GET /comments/new
   def new
     @comment = Comment.new
-
-    @tweet_id = params["tweet_id"]
-    @tweet = Tweet.find(@tweet_id)
   end
 
   # GET /comments/1/edit
@@ -37,11 +34,11 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     # update the number of comments for this tweet
-    set_num_comments (params[:tweet_id])
+    @set_num_comments = (params[:tweet_id])
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment created successfully.' }
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
         format.json { render action: 'show', status: :created, location: @comment }
         format.js
       else
@@ -56,7 +53,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment updated successfully.' }
+        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
         format.json { head :no_content }
         format.js
       else

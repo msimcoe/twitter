@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :comments
+
+  resources :tweets
+
   root "welcome#index"
 
   get 'users/index'
@@ -12,8 +16,6 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get 'comments/recent'
-
-  resources :comments
 
   resources :tweets
 
